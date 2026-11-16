@@ -15,7 +15,8 @@ const zh = {
   placeholderFigure: '占位图形',
 
   homeIntroTitle: 'TransBioSci',
-  homeIntro: '项目简介占位：网站定位与研究目标将在公开发布前补充。',
+  projectIntroHeading: '项目简介',
+  aboutPersonal: 'Hi，我是Void，一名跨性别男性。',
 
   transTitle: 'Trans 生理知识库',
   transCardDesc: '文档与实用知识',
@@ -97,7 +98,8 @@ const en: UIStrings = {
   placeholderFigure: 'Placeholder figure',
 
   homeIntroTitle: 'TransBioSci',
-  homeIntro: 'Project introduction placeholder: the site’s scope and research goals will be added before public release.',
+  projectIntroHeading: 'Project overview',
+  aboutPersonal: 'Hi, I’m Void, a trans man.',
 
   transTitle: 'Trans Physiology Knowledge Base',
   transCardDesc: 'Documents and practical knowledge',
@@ -132,14 +134,14 @@ const en: UIStrings = {
 
   aboutHeading: 'About me',
   aboutIntro:
-    'Hi, I’m Void, a trans man. I built this site to create a knowledge base on the physiology of human sex development, primarily for the Chinese-speaking transmasculine community. Relevant material in the community is often scattered and varies in quality. It can be hard to find organized explanations of physiological mechanisms, medical evidence, illustrated surgical procedures, and how to use devices.',
-  aboutResourcesLead: 'Several related sites are already available, including ',
-  about2345Note: ' (a great general resource I discovered recently, though it has relatively few FtM resources)',
-  aboutKnowSexNote: ' (a Chinese-language sex education site without a specific focus on trans people).',
+    'Welcome! This project aims to build a knowledge base on the physiology of human sex development, primarily for the Chinese-speaking transmasculine community. Relevant materials in this community are often scattered and vary in quality, with few organized resources covering physiological mechanisms, medical evidence, surgical illustrations, and device use.',
+  aboutResourcesLead: 'Many related websites are already active, including ',
+  about2345Note: ' (a great general resource, though it has relatively few FtM resources)',
+  aboutKnowSexNote: ' (a Chinese-language sex education site that is not specifically for trans people). ',
   aboutFocus:
-    'Still, clear answers to a few questions can be hard to find. How can HRT and gender-affirming surgery help someone’s body transition from their assigned sex toward their target sex? Which physical traits can current gender-affirming care change? Which questions remain open in science?',
+    'Still, few resources clearly organize what is known about these questions: “How do HRT and gender-affirming surgery help someone’s body transition from their assigned sex toward their target sex?” “Which physical traits can current gender-affirming care change?” “Which questions are still open in science?”',
   aboutClosing:
-    'Much of this knowledge base is still incomplete. I’ll use AI to help organize the material and cite my sources, primarily public information from Chinese- and English-speaking communities, published biology papers, and standards for gender-affirming care from different countries. My background is outside biology. If you spot any errors in the documents, please contact me through the guestbook or by email. I hope this site helps you!',
+    'Much of this project is still incomplete. The developer will use AI to help organize the material and cite sources, primarily public information from Chinese- and English-speaking communities, published biology papers, and standards for gender-affirming care from different countries. The developer has no formal background in biology. If you spot any errors in the documents, please contact the developer through the guestbook or by email. I hope this site helps you!',
   emailHeading: 'Email',
   emailLabel: 'Email: ',
   emailDetails: '. You can also use this address to report issues, request removal of a guestbook message, or discuss collaboration.',

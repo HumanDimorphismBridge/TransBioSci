@@ -32,14 +32,12 @@ const entries = [
 
   <section class="home-intro">
     <h1>{s.homeIntroTitle}</h1>
-    {lang === 'zh' ? (
-      <div class="panel project-intro">
-        <h2>项目简介</h2>
-        <p>{s.aboutIntro}</p>
-        <p>{s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{', '}<a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}，<a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}{s.aboutFocus}</p>
-        <p>{s.aboutClosing}</p>
-      </div>
-    ) : <p>{s.homeIntro}</p>}
+    <div class="panel project-intro">
+      <h2>{s.projectIntroHeading}</h2>
+      <p>{s.aboutIntro}</p>
+      <p>{s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{', '}<a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}{lang === 'zh' ? '，' : ', and '}<a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}{s.aboutFocus}</p>
+      <p>{s.aboutClosing}</p>
+    </div>
   </section>
 
   <nav aria-label={s.home}>
