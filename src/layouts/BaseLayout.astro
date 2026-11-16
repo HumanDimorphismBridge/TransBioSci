@@ -4,7 +4,7 @@ import SiteHeader, { type HeaderStart } from '../components/SiteHeader.astro';
 import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
 import { HTML_LANG, LANGS, type Direction, type KnowledgeBase, type Lang } from '../i18n/config';
 import { t } from '../i18n/ui';
-import { asset, routes } from '../lib/routes';
+import { asset } from '../lib/routes';
 
 interface Props {
   lang: Lang;
@@ -49,7 +49,6 @@ const docTitle = title === s.siteName ? s.siteName : `${title} · ${s.siteName}`
     </main>
     <footer class="site-footer">
       <div class="container">
-        <a href={routes.sources(lang)}>{s.footerSources}</a>
         <p>{s.footerLicense}</p>
       </div>
     </footer>
