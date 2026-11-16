@@ -33,7 +33,7 @@ const entries = [
   <section class="home-intro">
     <h1>{s.homeIntroTitle}</h1>
     {lang === 'zh' ? (
-      <div class="project-intro">
+      <div class="panel project-intro">
         <h2>项目简介</h2>
         <p>{s.aboutIntro}</p>
         <p>{s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{', '}<a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}，<a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}{s.aboutFocus}</p>
@@ -57,6 +57,12 @@ const entries = [
 
 <style>
   .project-intro {
+    max-width: 44rem;
+    margin-inline: auto;
     text-align: start;
+  }
+
+  .project-intro h2 {
+    text-align: center;
   }
 </style>
