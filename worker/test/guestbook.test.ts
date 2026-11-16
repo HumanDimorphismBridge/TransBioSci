@@ -329,6 +329,7 @@ describe('HTTP behaviour', () => {
 describe('Turnstile siteverify', () => {
   const siteverify = (result: object) =>
     vi.fn(async () => new Response(JSON.stringify(result), { headers: { 'Content-Type': 'application/json' } }));
+  const localEnv = { ...env, TURNSTILE_EXPECTED_HOSTNAMES: '' } as Env;
   const strictEnv = {
     ...env,
     TURNSTILE_EXPECTED_HOSTNAMES: 'humandimorphismbridge.github.io',
@@ -336,14 +337,14 @@ describe('Turnstile siteverify', () => {
 
   it('posts the secret and token to siteverify and requires success', async () => {
     const fetchFn = siteverify({ success: true });
-    expect(await createTurnstileVerifier(fetchFn as unknown as typeof fetch)('tok', env as Env)).toBe(true);
+    expect(await createTurnstileVerifier(fetchFn as unknown as typeof fetch)('tok', localEnv)).toBe(true);
     const [url, init] = fetchFn.mock.calls[0] as unknown as [string, RequestInit];
     expect(url).toBe('https://challenges.cloudflare.com/turnstile/v0/siteverify');
     const form = init.body as FormData;
     expect(form.get('response')).toBe('tok');
     expect(form.get('secret')).toBe('test-only-turnstile-secret');
     expect(form.has('remoteip')).toBe(false); // no IP is sent
-    expect(await createTurnstileVerifier(siteverify({ success: false }) as never)('tok', env as Env)).toBe(false);
+    expect(await createTurnstileVerifier(siteverify({ success: false }) as never)('tok', localEnv)).toBe(false);
   });
 
   it('checks hostname and action when expected hostnames are configured', async () => {
