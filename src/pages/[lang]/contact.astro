@@ -11,6 +11,7 @@ export const getStaticPaths = langPaths;
 const lang = Astro.params.lang as Lang;
 const s = t(lang);
 const alternates = mapLangs(routes.contact);
+const email = 'adrianvoid@outlook.com';
 ---
 
 <BaseLayout
@@ -26,11 +27,20 @@ const alternates = mapLangs(routes.contact);
   <div class="contact">
     <section class="panel">
       <h2>{s.aboutHeading}</h2>
-      <p>{s.aboutPlaceholder}</p>
+      <div class="about-copy">
+        <p>{s.aboutIntro}</p>
+        <p>
+          {s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{lang === 'zh' ? '、' : ', '}
+          <a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}{lang === 'zh' ? '和' : ', and '}
+          <a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}
+        </p>
+        <p>{s.aboutFocus}</p>
+        <p>{s.aboutClosing}</p>
+      </div>
     </section>
     <section class="panel">
       <h2>{s.emailHeading}</h2>
-      <p>{s.emailPlaceholder}</p>
+      <p>{s.emailLabel}{lang === 'en' ? <a href={`mailto:${email}`}>{email}</a> : email}{s.emailDetails}</p>
     </section>
     <section class="panel">
       <h2>{s.supportHeading}</h2>
@@ -38,3 +48,11 @@ const alternates = mapLangs(routes.contact);
     </section>
   </div>
 </BaseLayout>
+
+<style>
+  .about-copy {
+    display: grid;
+    gap: 0.75rem;
+    text-align: start;
+  }
+</style>
