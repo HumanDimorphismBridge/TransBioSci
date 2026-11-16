@@ -31,15 +31,15 @@ const email = 'adrianvoid@outlook.com';
         <p>Hi，我是Void，一名跨性别男性。</p>
       </section>
     )}
-    <section class="panel">
-      <h2>{lang === 'zh' ? '项目简介' : s.aboutHeading}</h2>
+    {lang === 'en' && <section class="panel">
+      <h2>{s.aboutHeading}</h2>
       <div class="about-copy">
         <p>{s.aboutIntro}</p>
-        <p>{s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{', '}<a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}{lang === 'zh' ? '，' : ', and '}<a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}{lang === 'zh' && s.aboutFocus}</p>
-        {lang === 'en' && <p>{s.aboutFocus}</p>}
+        <p>{s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{', '}<a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}, and <a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}</p>
+        <p>{s.aboutFocus}</p>
         <p>{s.aboutClosing}</p>
       </div>
-    </section>
+    </section>}
     <section class="panel">
       <h2>{s.emailHeading}</h2>
       <p>{s.emailLabel}{lang === 'en' ? <a href={`mailto:${email}`}>{email}</a> : email}{s.emailDetails}</p>
