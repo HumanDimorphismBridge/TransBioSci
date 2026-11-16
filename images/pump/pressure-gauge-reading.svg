@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="t d">
+<defs>
+ <style>
+ text{font-family:"Noto Sans CJK SC","Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;fill:#1d2d39}
+ .hd{font-size:34px;font-weight:700} .subtitle{font-size:19px;fill:#526579} .h{font-size:25px;font-weight:650}
+ .txt{font-size:21px} .small{font-size:18px} .tiny{font-size:16px}
+ .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:27px;font-weight:700}
+ </style>
+ <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L0 6 L8 3 z" fill="#50667b"/></marker>
+ <marker id="dasharr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L0 6 L8 3 z" fill="#9f6d65"/></marker>
+</defs>
+<title id="t">真空压力表：读数、单位、正负号</title><desc id="d">示意压力表读数为5英寸汞柱真空度，等于16.93千帕负压幅度，约2.46 psi。旁边对照5 psi约为10.18 inHg。仅做单位演示，绝非建议参数。</desc><rect x="0" y="0" width="1280" height="720" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="60" y="68" class="hd">如何读真空压力表？</text>
+<text x="60" y="105" class="subtitle">先识别单位与正负号，再换算；图中的数字只用于演算</text>
+<rect x="54" y="138" width="480" height="438" rx="26" fill="#f7fafc" stroke="#dce6ec" stroke-width="1.5"/>
+<text x="88" y="186" class="h">表盘示意：正数“真空度”</text>
+<text x="88" y="218" class="small">单位 inHg VAC</text>
+<circle cx="292" cy="402" r="160" fill="white" stroke="#b9cbd7" stroke-width="4"/><line x1="184.6" y1="464.0" x2="167.3" y2="474.0" stroke="#678196" stroke-width="4"/><text x="210.6" y="455.0" class="small" text-anchor="middle">0</text>
+<line x1="165.9" y1="433.4" x2="152.3" y2="436.8" stroke="#678196" stroke-width="2"/><line x1="162.1" y1="397.5" x2="148.1" y2="397.0" stroke="#678196" stroke-width="2"/><line x1="168.4" y1="361.8" x2="155.0" y2="357.5" stroke="#678196" stroke-width="2"/><line x1="184.2" y1="329.3" x2="172.6" y2="321.5" stroke="#678196" stroke-width="2"/><line x1="212.3" y1="307.0" x2="199.4" y2="291.7" stroke="#678196" stroke-width="4"/><text x="231.6" y="336.0" class="small" text-anchor="middle">5</text>
+<line x1="239.1" y1="283.2" x2="233.4" y2="270.4" stroke="#678196" stroke-width="2"/><line x1="273.9" y1="273.3" x2="272.0" y2="259.4" stroke="#678196" stroke-width="2"/><line x1="310.1" y1="273.3" x2="312.0" y2="259.4" stroke="#678196" stroke-width="2"/><line x1="344.9" y1="283.2" x2="350.6" y2="270.4" stroke="#678196" stroke-width="2"/><line x1="371.7" y1="307.0" x2="384.6" y2="291.7" stroke="#678196" stroke-width="4"/><text x="352.4" y="336.0" class="small" text-anchor="middle">10</text>
+<line x1="399.8" y1="329.3" x2="411.4" y2="321.5" stroke="#678196" stroke-width="2"/><line x1="415.6" y1="361.8" x2="429.0" y2="357.5" stroke="#678196" stroke-width="2"/><line x1="421.9" y1="397.5" x2="435.9" y2="397.0" stroke="#678196" stroke-width="2"/><line x1="418.1" y1="433.4" x2="431.7" y2="436.8" stroke="#678196" stroke-width="2"/><line x1="399.4" y1="464.0" x2="416.7" y2="474.0" stroke="#678196" stroke-width="4"/><text x="373.4" y="455.0" class="small" text-anchor="middle">15</text>
+<line x1="292" y1="402" x2="227.7" y2="325.4" stroke="#bb5b4b" stroke-width="7" stroke-linecap="round"/><circle cx="292" cy="402" r="12" fill="#bb5b4b"/><text x="292" y="472" class="mono" text-anchor="middle">5 inHg</text>
+<text x="292" y="500" class="small" text-anchor="middle">示例读数</text>
+<rect x="565" y="138" width="662" height="218" rx="24" fill="#f6faf6" stroke="#cfdfd3" stroke-width="1.5"/>
+<text x="596" y="185" class="h">同一种负压可以这样写</text>
+<text x="596" y="237" class="mono">5 inHg VAC</text>
+<text x="1032" y="235" class="hd">=</text>
+<text x="596" y="285" class="h">−16.93 kPa（表压，约值）</text>
+<text x="596" y="327" class="small">正数真空度 ≠ 正表压</text>
+<rect x="565" y="375" width="662" height="201" rx="24" fill="#fff8f3" stroke="#ead4c7" stroke-width="1.5"/>
+<text x="596" y="422" class="h">不要混淆两个“5”</text>
+<text x="596" y="469" class="h">5 inHg ≈ 16.93 kPa ≈ 2.46 psi</text>
+<text x="596" y="508" class="h">5 psi ≈ 34.47 kPa ≈ 10.18 inHg</text>
+<text x="596" y="549" class="small">两者幅度相差约 2 倍</text>
+<rect x="54" y="604" width="1173" height="73" rx="15" fill="#f9f3e9" stroke="#ebdcc7" stroke-width="1.5"/>
+<text x="80" y="647" class="txt">注意：表盘量程 / FDA 设备设计指标 / 本图数字，均不是 FtM 安全压力建议。</text>
+</svg>
