@@ -25,16 +25,18 @@ const email = 'adrianvoid@outlook.com';
 
   <h1 class="visually-hidden">{s.contactTitle}</h1>
   <div class="contact">
+    {lang === 'zh' && (
+      <section class="panel">
+        <h2>{s.aboutHeading}</h2>
+        <p>Hi，我是Void，一名跨性别男性。</p>
+      </section>
+    )}
     <section class="panel">
-      <h2>{s.aboutHeading}</h2>
+      <h2>{lang === 'zh' ? '项目简介' : s.aboutHeading}</h2>
       <div class="about-copy">
         <p>{s.aboutIntro}</p>
-        <p>
-          {s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{lang === 'zh' ? '、' : ', '}
-          <a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}{lang === 'zh' ? '和' : ', and '}
-          <a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}
-        </p>
-        <p>{s.aboutFocus}</p>
+        <p>{s.aboutResourcesLead}<a href="https://ftm.wiki/zh-cn/">FtM.wiki</a>{', '}<a href="https://2345.lgbt/zh-cn/">2345LGBT</a>{s.about2345Note}{lang === 'zh' ? '，' : ', and '}<a href="https://knowsex.net/">KnowSex</a>{s.aboutKnowSexNote}{lang === 'zh' && s.aboutFocus}</p>
+        {lang === 'en' && <p>{s.aboutFocus}</p>}
         <p>{s.aboutClosing}</p>
       </div>
     </section>
