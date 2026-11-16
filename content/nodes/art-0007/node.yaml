@@ -1,0 +1,15 @@
+id: art-0007
+
+projections:
+  zh-CN:
+    title: "Pump 后如何区分充血、水肿与组织损伤？"
+    body: ./zh-CN.md
+  en:
+    title: "Pump use, congestion, swelling, and tissue injury"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+  tissue:
+    - tissue-external-genitalia

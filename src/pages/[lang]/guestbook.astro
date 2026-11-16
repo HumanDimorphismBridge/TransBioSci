@@ -1,0 +1,90 @@
+---
+/**
+ * Guestbook. Talks to the Cloudflare Worker API when PUBLIC_GUESTBOOK_API_URL and
+ * PUBLIC_TURNSTILE_SITE_KEY are set at build time; otherwise shows a disabled shell.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { HTML_LANG, type Lang } from '../../i18n/config';
+import { t } from '../../i18n/ui';
+import { GUESTBOOK_STRINGS } from '../../i18n/guestbook';
+import { routes } from '../../lib/routes';
+import { langPaths, mapLangs } from '../../lib/paths';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+// No language switch on this page (follows the site language); hreflang alternates still help.
+const alternates = mapLangs(routes.guestbook);
+const [ruleBefore, ruleAfter] = s.guestbookContactRule.split('{contact}');
+
+const apiUrl = (import.meta.env.PUBLIC_GUESTBOOK_API_URL ?? '').trim().replace(/\/+$/, '');
+const siteKey = (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '').trim();
+const connected = Boolean(apiUrl && siteKey);
+const clientStrings = JSON.stringify(GUESTBOOK_STRINGS[lang]).replace(/</g, '\\u003c');
+---
+
+<BaseLayout
+  lang={lang}
+  title={s.guestbookTitle}
+  header={{ start: { kind: 'back', href: routes.home(lang), label: s.backHome }, title: s.guestbookTitle }}
+  breadcrumbs={[{ label: s.home, href: routes.home(lang) }, { label: s.guestbookTitle }]}
+  alternates={alternates}
+>
+  <h1 class="visually-hidden">{s.guestbookTitle}</h1>
+
+  <div
+    data-guestbook={connected ? 'on' : 'off'}
+    data-api={apiUrl}
+    data-sitekey={siteKey}
+    data-lang={lang}
+    data-locale={HTML_LANG[lang]}
+  >
+    <section class="panel" aria-labelledby="gb-form-title">
+      <h2 id="gb-form-title" class="visually-hidden">{s.submit}</h2>
+      {!connected && <p class="notice">{s.guestbookNotConnected}</p>}
+      <div class="rules">
+        <p>{s.guestbookIntro}</p>
+        <p>{s.guestbookVoteRule}</p>
+        <p>{ruleBefore}<a href={routes.contact(lang)}>{s.contactTitle}</a>{ruleAfter}</p>
+      </div>
+      <form class="form section" data-gb-form novalidate>
+        <div class="field">
+          <label for="gb-nickname">{s.nicknameLabel}</label>
+          <input id="gb-nickname" name="nickname" type="text" placeholder="Anon" autocomplete="off" disabled />
+        </div>
+        <div class="field">
+          <label for="gb-body">{s.bodyLabel}</label>
+          <textarea id="gb-body" name="body" required aria-describedby="gb-counter" disabled></textarea>
+          <span id="gb-counter" class="field-hint" data-gb-counter></span>
+        </div>
+        <div class="turnstile" data-gb-turnstile></div>
+        <div class="form-footer">
+          <p class="form-status" data-gb-status role="status" aria-live="polite"></p>
+          <button class="button" type="submit" data-gb-submit disabled>{s.submit}</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" aria-labelledby="gb-list-title">
+      <h2 id="gb-list-title">{s.allMessages}</h2>
+      <p class="form-status" data-gb-list-status role="status" aria-live="polite"></p>
+      <ol class="gb-list" data-gb-list></ol>
+      <p class="empty-state panel" data-gb-empty hidden={connected}>{s.noMessages}</p>
+      <div class="gb-more">
+        <button class="button button-secondary" type="button" data-gb-more hidden></button>
+      </div>
+    </section>
+  </div>
+
+  {
+    connected && (
+      <>
+        <script type="application/json" id="gb-strings" set:html={clientStrings} />
+        <script>
+          import '../../scripts/guestbook';
+        </script>
+      </>
+    )
+  }
+</BaseLayout>

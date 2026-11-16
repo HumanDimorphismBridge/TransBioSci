@@ -1,0 +1,85 @@
+---
+/** Trans knowledge base page: Intro (nodeId undefined) or article. */
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LangSwitch from './LangSwitch.astro';
+import DirectionSelect from './DirectionSelect.astro';
+import DocTree from './DocTree.astro';
+import { LOCALE_OF, type Direction, type Lang } from '../i18n/config';
+import { t } from '../i18n/ui';
+import { appliesTo, groupPath, loadContent, nodeTitle, treeFor } from '../lib/content';
+import { routes } from '../lib/routes';
+import { mapDirections, mapLangs } from '../lib/paths';
+
+interface Props {
+  lang: Lang;
+  dir: Direction;
+  nodeId?: string;
+}
+
+const { lang, dir, nodeId } = Astro.props;
+const s = t(lang);
+const content = await loadContent();
+const isIntro = nodeId === undefined;
+const node = content.nodes.get(nodeId ?? content.intros[dir])!;
+const tree = treeFor(content, dir);
+const title = nodeTitle(node, lang);
+
+const here = (l: Lang) => (isIntro ? routes.transIntro(l, dir) : routes.article(l, dir, node.id));
+const alternates = mapLangs(here);
+// Switching direction keeps the article when it applies to the target direction; otherwise go to that Intro.
+const directionHrefs = mapDirections((d) =>
+  !isIntro && appliesTo(node, d) ? routes.article(lang, d, node.id) : routes.transIntro(lang, d),
+);
+
+const groups = isIntro ? [] : (groupPath(tree, node.id) ?? []);
+const breadcrumbs = [
+  { label: s.home, href: routes.home(lang) },
+  { label: s.transTitle, href: routes.transIntro(lang, dir) },
+  ...(isIntro ? [{ label: s.intro }] : [...groups.map((g) => ({ label: g[LOCALE_OF[lang]] })), { label: title }]),
+];
+
+const { Content } = await render(node.bodies[LOCALE_OF[lang]]);
+---
+
+<BaseLayout
+  lang={lang}
+  title={isIntro ? `${s.intro} · ${s.transTitle}` : title}
+  header={{
+    start: { kind: 'back', href: routes.home(lang), label: s.backHome },
+    title: s.transTitle,
+    titleHref: routes.transIntro(lang, dir),
+  }}
+  breadcrumbs={breadcrumbs}
+  alternates={alternates}
+  kb="trans"
+  direction={dir}
+  wide
+>
+  <Fragment slot="controls">
+    <DirectionSelect lang={lang} current={dir} hrefs={directionHrefs} />
+    <LangSwitch lang={lang} hrefs={alternates} />
+  </Fragment>
+
+  <div class="kb-layout">
+    <aside class="toc" aria-label={s.toc}>
+      <details class="toc-panel" data-toc-panel open>
+        <summary>{s.tocToggle}</summary>
+        <div class="toc-body">
+          <ul class="doc-tree">
+            <li>
+              <a href={routes.transIntro(lang, dir)} aria-current={isIntro ? 'page' : undefined}>{s.intro}</a>
+            </li>
+          </ul>
+          <DocTree lang={lang} dir={dir} items={tree} content={content} currentId={isIntro ? undefined : node.id} />
+        </div>
+      </details>
+    </aside>
+    <article class="article panel">
+      <h1>{title}</h1>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+  </div>
+</BaseLayout>

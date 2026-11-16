@@ -1,0 +1,47 @@
+---
+import { t } from '../i18n/ui';
+import type { Lang } from '../i18n/config';
+import { asset, routes } from '../lib/routes';
+
+export type HeaderStart = { kind: 'logo' } | { kind: 'back'; href: string; label: string };
+
+interface Props {
+  lang: Lang;
+  start: HeaderStart;
+  /** Centre title; omitted on the home page, where the wordmark names the site. */
+  title?: string;
+  titleHref?: string;
+}
+
+const { lang, start, title, titleHref } = Astro.props;
+const s = t(lang);
+---
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-start">
+      {
+        start.kind === 'logo' ? (
+          <a class="logo" href={routes.home(lang)}>
+            <img class="logo-mark" src={asset('logo.svg')} alt="" width="40" height="40" />
+            <span class="wordmark">{s.siteName}</span>
+          </a>
+        ) : (
+          <a class="back-link" href={start.href}>
+            <span aria-hidden="true">←</span> {start.label}
+          </a>
+        )
+      }
+    </div>
+    {
+      title && (
+        <div class="header-title">
+          {titleHref ? <a href={titleHref}>{title}</a> : <span>{title}</span>}
+        </div>
+      )
+    }
+    <div class="header-end">
+      <slot />
+    </div>
+  </div>
+</header>

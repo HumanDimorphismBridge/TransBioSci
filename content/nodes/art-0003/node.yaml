@@ -1,0 +1,15 @@
+id: art-0003
+
+projections:
+  zh-CN:
+    title: 占位文章：Bottom Growth
+    body: ./zh-CN.md
+  en:
+    title: "Placeholder article: Bottom growth"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+  tissue:
+    - tissue-external-genitalia

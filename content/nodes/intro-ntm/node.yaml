@@ -1,0 +1,14 @@
+id: intro-ntm
+
+projections:
+  zh-CN:
+    title: NtM 方向简介（占位）
+    body: ./zh-CN.md
+  en:
+    title: "NtM Introduction (placeholder)"
+    body: ./en.md
+
+relations:
+  direction:
+    - ntm
+  tissue: []

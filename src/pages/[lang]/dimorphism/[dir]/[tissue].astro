@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import LangSwitch from '../../../../components/LangSwitch.astro';
+import DirectionSelect from '../../../../components/DirectionSelect.astro';
+import Figure from '../../../../components/Figure.astro';
+import { DIRECTIONS, LANGS, LOCALE_OF, type Direction, type Lang } from '../../../../i18n/config';
+import { t } from '../../../../i18n/ui';
+import { articlesForTissue, loadContent, nodeTitle } from '../../../../lib/content';
+import { routes } from '../../../../lib/routes';
+import { mapDirections, mapLangs } from '../../../../lib/paths';
+
+export async function getStaticPaths() {
+  const { tissues } = await loadContent();
+  return LANGS.flatMap((lang) =>
+    DIRECTIONS.flatMap((dir) => tissues.map((tissue) => ({ params: { lang, dir, tissue: tissue.id } }))),
+  );
+}
+
+const { lang, dir, tissue: tissueId } = Astro.params as { lang: Lang; dir: Direction; tissue: string };
+const s = t(lang);
+const content = await loadContent();
+const tissue = content.tissues.find((x) => x.id === tissueId)!;
+const name = tissue.names[LOCALE_OF[lang]];
+const articles = articlesForTissue(content, dir, tissueId);
+const alternates = mapLangs((l) => routes.tissue(l, dir, tissueId));
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${name} · ${s.dimorphismTitle}`}
+  header={{
+    start: { kind: 'back', href: routes.tissueGrid(lang, dir), label: s.backToTissues },
+    title: s.dimorphismTitle,
+    titleHref: routes.tissueGrid(lang, dir),
+  }}
+  breadcrumbs={[
+    { label: s.home, href: routes.home(lang) },
+    { label: s.dimorphismTitle, href: routes.tissueGrid(lang, dir) },
+    { label: name },
+  ]}
+  alternates={alternates}
+  kb="dimorphism"
+  direction={dir}
+>
+  <Fragment slot="controls">
+    <DirectionSelect lang={lang} current={dir} hrefs={mapDirections((d) => routes.tissue(lang, d, tissueId))} />
+    <LangSwitch lang={lang} hrefs={alternates} />
+  </Fragment>
+
+  <div class="tissue-head">
+    <Figure name={tissue.figure} lang={lang} />
+    <h1>{name}</h1>
+  </div>
+
+  <section class="panel reserved" aria-labelledby="tissue-content">
+    <h2 id="tissue-content" class="reserved-label">{s.tissueContainer}</h2>
+    {
+      articles.length ? (
+        <>
+          <h3>{s.tissueRelated}</h3>
+          <ul class="link-list">
+            {articles.map((node) => (
+              <li>
+                <a href={routes.article(lang, dir, node.id)}>{nodeTitle(node, lang)}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p class="empty-state">{s.tissueEmpty}</p>
+      )
+    }
+  </section>
+</BaseLayout>

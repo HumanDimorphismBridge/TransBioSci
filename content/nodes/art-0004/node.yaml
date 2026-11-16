@@ -1,0 +1,15 @@
+id: art-0004
+
+projections:
+  zh-CN:
+    title: "Pump 压力表怎么看？inHg、mmHg、psi 与负表压"
+    body: ./zh-CN.md
+  en:
+    title: "How to read a pump pressure gauge"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+  tissue:
+    - tissue-external-genitalia

@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+import { LANGS, LANG_LABEL } from '../i18n/config';
+import { UI } from '../i18n/ui';
+import { asset, routes } from '../lib/routes';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={asset('favicon.ico')} sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href={asset('logo.svg')} />
+    <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
+    <meta name="robots" content="noindex" />
+    <title>404 · TransBioSci</title>
+  </head>
+  <body>
+    <main class="redirect">
+      <h1>404</h1>
+      <p>{UI.zh.notFoundBody}</p>
+      <p lang="en">{UI.en.notFoundBody}</p>
+      <ul>
+        {LANGS.map((l) => <li><a href={routes.home(l)}>{UI[l].home} · {LANG_LABEL[l]}</a></li>)}
+      </ul>
+    </main>
+  </body>
+</html>

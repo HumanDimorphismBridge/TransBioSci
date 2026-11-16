@@ -1,0 +1,35 @@
+# 组织注册信息：稳定 ID、双语名称及图形引用（图形位于 src/assets/figures/；性别相关部位的色块随方向着色）。
+tissues:
+  - id: tissue-skin
+    names: { zh-CN: 皮肤, en: Skin }
+    figure: skin
+  - id: tissue-bone
+    names: { zh-CN: 骨骼, en: Skeleton }
+    figure: bone
+  - id: tissue-muscle
+    names: { zh-CN: 肌肉, en: Muscle }
+    figure: muscle
+  - id: tissue-nerve
+    names: { zh-CN: 神经, en: Nerves }
+    figure: nerve
+  - id: tissue-vascular
+    names: { zh-CN: 血管, en: Blood vessels }
+    figure: vascular
+  - id: tissue-gonads
+    names: { zh-CN: 性腺, en: Gonads }
+    figure: gonads
+  - id: tissue-external-genitalia
+    names: { zh-CN: 外生殖器, en: External genitalia }
+    figure: external-genitalia
+  - id: tissue-internal-genitalia
+    names: { zh-CN: 内生殖器, en: Internal genitalia }
+    figure: internal-genitalia
+  - id: tissue-breast
+    names: { zh-CN: 乳腺, en: Mammary glands }
+    figure: breast
+  - id: tissue-larynx
+    names: { zh-CN: 喉结, en: Laryngeal prominence }
+    figure: larynx
+  - id: tissue-whole-body
+    names: { zh-CN: 全身, en: Whole body }
+    figure: whole-body

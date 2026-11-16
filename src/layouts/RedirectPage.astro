@@ -1,0 +1,53 @@
+---
+/**
+ * Entry page that forwards to the saved preference (language or direction).
+ * Without JavaScript or storage it falls back to the default target and lists all choices.
+ */
+import '../styles/global.css';
+import { HTML_LANG, type Lang } from '../i18n/config';
+import { t } from '../i18n/ui';
+import { asset } from '../lib/routes';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  storageKey: string;
+  /** Allowed values and their target URLs, in display order. */
+  targets: { value: string; label: string; href: string }[];
+  defaultValue: string;
+}
+
+const { lang, title, storageKey, targets, defaultValue } = Astro.props;
+const map = Object.fromEntries(targets.map((x) => [x.value, x.href]));
+const fallback = map[defaultValue];
+---
+
+<!doctype html>
+<html lang={HTML_LANG[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={asset('favicon.ico')} sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href={asset('logo.svg')} />
+    <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <script is:inline define:vars={{ storageKey, map, fallback }}>
+      var target = fallback;
+      try {
+        var saved = localStorage.getItem(storageKey);
+        if (saved && Object.prototype.hasOwnProperty.call(map, saved)) target = map[saved];
+      } catch (e) {}
+      location.replace(target);
+    </script>
+    <noscript><meta http-equiv="refresh" content={`0; url=${fallback}`} /></noscript>
+  </head>
+  <body>
+    <main class="redirect">
+      <p>{t(lang).redirecting}</p>
+      <ul>
+        {targets.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+      </ul>
+    </main>
+  </body>
+</html>

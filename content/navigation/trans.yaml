@@ -1,0 +1,33 @@
+# Trans 生理知识库导航：目录层级、排序和各方向 Intro。
+# 通过节点 ID 引用内容；节点按 relations.direction 在各方向下显示，无可见子项的栏目自动隐藏。
+intros:
+  ftm: intro-ftm
+  mtf: intro-mtf
+  ntf: intro-ntf
+  ntm: intro-ntm
+
+tree:
+  - label:
+      zh-CN: 基础解剖
+      en: Basic anatomy
+    children:
+      - node: art-0001
+      - node: art-0002
+      - node: art-0005
+  - label:
+      zh-CN: Bottom Growth
+      en: Bottom growth
+    children:
+      - node: art-0003
+  - label:
+      zh-CN: Pump
+      en: Pump
+    children:
+      - node: art-0004
+      - node: art-0007
+      - node: art-0008
+  - label:
+      zh-CN: 发育与分化
+      en: Development and differentiation
+    children:
+      - node: art-0006

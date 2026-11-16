@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LangSwitch from '../../components/LangSwitch.astro';
+import type { Lang } from '../../i18n/config';
+import { t } from '../../i18n/ui';
+import { routes } from '../../lib/routes';
+import { langPaths, mapLangs } from '../../lib/paths';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const alternates = mapLangs(routes.contact);
+---
+
+<BaseLayout
+  lang={lang}
+  title={s.contactTitle}
+  header={{ start: { kind: 'back', href: routes.home(lang), label: s.backHome }, title: s.contactTitle }}
+  breadcrumbs={[{ label: s.home, href: routes.home(lang) }, { label: s.contactTitle }]}
+  alternates={alternates}
+>
+  <LangSwitch slot="controls" lang={lang} hrefs={alternates} />
+
+  <h1 class="visually-hidden">{s.contactTitle}</h1>
+  <div class="contact">
+    <section class="panel">
+      <h2>{s.aboutHeading}</h2>
+      <p>{s.aboutPlaceholder}</p>
+    </section>
+    <section class="panel">
+      <h2>{s.emailHeading}</h2>
+      <p>{s.emailPlaceholder}</p>
+    </section>
+    <section class="panel">
+      <h2>{s.supportHeading}</h2>
+      <div class="qr-placeholder">{s.qrPlaceholder}</div>
+    </section>
+  </div>
+</BaseLayout>

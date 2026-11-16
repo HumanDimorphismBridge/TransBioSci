@@ -1,0 +1,15 @@
+id: art-0008
+
+projections:
+  zh-CN:
+    title: "Pump 会导致 ED 吗？勃起功能、损伤风险与证据缺口"
+    body: ./zh-CN.md
+  en:
+    title: "Pump use and erectile function"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+  tissue:
+    - tissue-external-genitalia

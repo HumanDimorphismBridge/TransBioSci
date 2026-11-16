@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Guestbook: speech bubbles (back bubble first so the front one covers the overlap) -->
+  <path class="fig-soft" d="M62 56H92Q102 56 102 66V82Q102 92 92 92H90V100L80 92H62Q52 92 52 82V66Q52 56 62 56Z"/>
+  <path class="fig-accent" d="M64 80H90"/>
+  <path class="fig-soft" d="M28 26H72Q82 26 82 36V56Q82 66 72 66H44L32 76V66H28Q18 66 18 56V36Q18 26 28 26Z"/>
+  <path d="M30 40H70M30 52H58"/>
+</svg>

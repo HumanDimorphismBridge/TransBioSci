@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+import SiteHeader, { type HeaderStart } from '../components/SiteHeader.astro';
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
+import { HTML_LANG, LANGS, type Direction, type KnowledgeBase, type Lang } from '../i18n/config';
+import { t } from '../i18n/ui';
+import { asset, routes } from '../lib/routes';
+
+interface Props {
+  lang: Lang;
+  /** Document title prefix; the site name is appended. */
+  title: string;
+  header: { start: HeaderStart; title?: string; titleHref?: string };
+  breadcrumbs: Crumb[];
+  /** Same page in each language, for hreflang alternates. */
+  alternates?: Record<Lang, string>;
+  kb?: KnowledgeBase;
+  direction?: Direction;
+  wide?: boolean;
+}
+
+const { lang, title, header, breadcrumbs, alternates, kb, direction, wide = false } = Astro.props;
+const s = t(lang);
+const docTitle = title === s.siteName ? s.siteName : `${title} · ${s.siteName}`;
+---
+
+<!doctype html>
+<html lang={HTML_LANG[lang]} data-lang={lang} data-kb={kb} data-dir={direction}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={asset('favicon.ico')} sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href={asset('logo.svg')} />
+    <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
+    <title>{docTitle}</title>
+    <meta name="color-scheme" content="light" />
+    {alternates && LANGS.map((l) => <link rel="alternate" hreflang={HTML_LANG[l]} href={alternates[l]} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{s.skipToContent}</a>
+    <SiteHeader lang={lang} start={header.start} title={header.title} titleHref={header.titleHref}>
+      <slot name="controls" />
+    </SiteHeader>
+    <div class:list={['container', { 'container-wide': wide }]}>
+      <Breadcrumbs lang={lang} items={breadcrumbs} />
+    </div>
+    <main id="main" class:list={['container', { 'container-wide': wide }]} tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <a href={routes.sources(lang)}>{s.footerSources}</a>
+        <p>{s.footerLicense}</p>
+      </div>
+    </footer>
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

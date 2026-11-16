@@ -1,0 +1,33 @@
+---
+import { DIRECTIONS, DIRECTION_LABEL, type Direction, type Lang } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  current: Direction;
+  /** Target URL for each direction, already resolved by the page's switching rules. */
+  hrefs: Record<Direction, string>;
+}
+
+const { lang, current, hrefs } = Astro.props;
+const label = t(lang).directionLabel;
+---
+
+<details class="dropdown" data-dropdown>
+  <summary aria-label={`${label}: ${DIRECTION_LABEL[current]}`}>
+    <span class="dropdown-prefix">{label}</span>
+    <span>{DIRECTION_LABEL[current]}</span>
+    <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" /></svg>
+  </summary>
+  <ul class="dropdown-menu">
+    {
+      DIRECTIONS.map((d) => (
+        <li>
+          <a href={hrefs[d]} aria-current={d === current ? 'true' : undefined}>
+            {DIRECTION_LABEL[d]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</details>

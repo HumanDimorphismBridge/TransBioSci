@@ -1,0 +1,55 @@
+name: Publish to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_GUESTBOOK_API_URL: ${{ vars.PUBLIC_GUESTBOOK_API_URL }}
+      PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - name: Check public artifact
+        run: |
+          if find dist \( -iname 'AGENTS.md' -o -iname 'agent-work' -o -iname 'notes' -o -iname 'draft*' -o -iname '.env*' -o -iname '.dev.vars*' -o -iname '*.tmp' \) -print | grep -q .; then
+            echo "Local files found in the Pages artifact."
+            exit 1
+          fi
+          if grep -rEq 'https?://(localhost|127\.0\.0\.1)([:/]|")' dist; then
+            echo "A local service URL found in the Pages artifact."
+            exit 1
+          fi
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,44 @@
+---
+import type { Direction, Lang } from '../i18n/config';
+import { LOCALE_OF } from '../i18n/config';
+import { nodeTitle, type SiteContent, type TreeItem } from '../lib/content';
+import { routes } from '../lib/routes';
+
+interface Props {
+  lang: Lang;
+  dir: Direction;
+  items: TreeItem[];
+  content: SiteContent;
+  /** Current article node; undefined on the Intro page. */
+  currentId?: string;
+}
+
+const { lang, dir, items, content, currentId } = Astro.props;
+
+const contains = (item: TreeItem): boolean =>
+  item.kind === 'node' ? item.id === currentId : item.children.some(contains);
+---
+
+<ul class="doc-tree">
+  {
+    items.map((item) =>
+      item.kind === 'node' ? (
+        <li>
+          <a
+            href={routes.article(lang, dir, item.id)}
+            aria-current={item.id === currentId ? 'page' : undefined}
+          >
+            {nodeTitle(content.nodes.get(item.id)!, lang)}
+          </a>
+        </li>
+      ) : (
+        <li>
+          <details open={contains(item)}>
+            <summary>{item.label[LOCALE_OF[lang]]}</summary>
+            <Astro.self lang={lang} dir={dir} items={item.children} content={content} currentId={currentId} />
+          </details>
+        </li>
+      ),
+    )
+  }
+</ul>

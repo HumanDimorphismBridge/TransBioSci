@@ -1,0 +1,14 @@
+id: intro-ntf
+
+projections:
+  zh-CN:
+    title: NtF 方向简介（占位）
+    body: ./zh-CN.md
+  en:
+    title: "NtF Introduction (placeholder)"
+    body: ./en.md
+
+relations:
+  direction:
+    - ntf
+  tissue: []

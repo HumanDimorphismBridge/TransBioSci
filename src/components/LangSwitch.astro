@@ -1,0 +1,27 @@
+---
+import { HTML_LANG, LANGS, LANG_LABEL, type Lang } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** Same page in each language. */
+  hrefs: Record<Lang, string>;
+}
+
+const { lang, hrefs } = Astro.props;
+---
+
+<nav class="segmented" aria-label={t(lang).languageLabel}>
+  {
+    LANGS.map((l) => (
+      <a
+        href={hrefs[l]}
+        hreflang={HTML_LANG[l]}
+        lang={HTML_LANG[l]}
+        aria-current={l === lang ? 'true' : undefined}
+      >
+        {LANG_LABEL[l]}
+      </a>
+    ))
+  }
+</nav>

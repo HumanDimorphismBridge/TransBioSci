@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Skin: abstract cross-section (epidermis, dermis, hypodermis with fat cells) and hairs -->
+  <path class="fig-soft" d="M16 46Q27 40 38 46T60 46T82 46T104 46V56Q93 62 82 56T60 56T38 56T16 56Z"/>
+  <path d="M16 46V100H104V46"/>
+  <path d="M16 78Q27 74 38 78T60 78T82 78T104 78"/>
+  <circle cx="28" cy="90" r="5"/><circle cx="46" cy="90" r="5"/><circle cx="64" cy="90" r="5"/><circle cx="82" cy="90" r="5"/><circle cx="97" cy="91" r="3.5"/>
+  <path d="M44 70L49 46Q51 34 46 22"/><circle cx="43.5" cy="72" r="3"/>
+  <path d="M74 68L77 46Q79 33 85 23"/><circle cx="73.5" cy="70" r="3"/>
+</svg>

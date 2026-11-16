@@ -1,0 +1,26 @@
+{
+  // Guestbook API for TransBioSci. Free plan only; do not enable paid upgrades.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "transbiosci-guestbook",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "guestbook",
+      "database_id": "f205316a-802f-4fae-af4a-a3e2d4875b08",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // Emergency switch: "true" pauses posting and voting, reads keep working. Redeploy to apply.
+    "GUESTBOOK_READ_ONLY": "false",
+    // Comma-separated browser origins allowed by CORS.
+    "ALLOWED_ORIGINS": "https://humandimorphismbridge.github.io",
+    // Comma-separated hostnames Turnstile tokens must be issued for; empty skips the check.
+    "TURNSTILE_EXPECTED_HOSTNAMES": "humandimorphismbridge.github.io"
+  }
+  // Secrets (never in this file): VISITOR_HASH_SECRET, TURNSTILE_SECRET_KEY.
+  // Local values live in the git-ignored .dev.vars file (see .dev.vars.example).
+}

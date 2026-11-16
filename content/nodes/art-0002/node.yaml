@@ -1,0 +1,17 @@
+id: art-0002
+
+projections:
+  zh-CN:
+    title: 占位文章：神经与血管
+    body: ./zh-CN.md
+  en:
+    title: "Placeholder article: Nerves and blood vessels"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+    - mtf
+  tissue:
+    - tissue-nerve
+    - tissue-vascular

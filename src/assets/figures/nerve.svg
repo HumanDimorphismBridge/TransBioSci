@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Nerve: neuron with dendrites, myelinated axon and terminals -->
+  <circle class="fig-soft" cx="34" cy="44" r="11"/><circle class="fig-ink" cx="34" cy="44" r="3.5"/>
+  <path d="M26 36L16 27M20 31L11 33M31 33L29 19M42 36L51 25M47 30L57 29M25 50L13 57"/>
+  <path d="M42 52C56 64 70 73 92 88"/>
+  <ellipse class="fig-soft" cx="55" cy="62.5" rx="7" ry="4" transform="rotate(38 55 62.5)"/>
+  <ellipse class="fig-soft" cx="68" cy="72" rx="7" ry="4" transform="rotate(36 68 72)"/>
+  <ellipse class="fig-soft" cx="81" cy="80.5" rx="7" ry="4" transform="rotate(33 81 80.5)"/>
+  <path d="M92 88L105 86M92 88L99 101M92 88L106 97"/>
+</svg>

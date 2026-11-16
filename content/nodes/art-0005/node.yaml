@@ -1,0 +1,15 @@
+id: art-0005
+
+projections:
+  zh-CN:
+    title: 占位文章：皮肤
+    body: ./zh-CN.md
+  en:
+    title: "Placeholder article: Skin"
+    body: ./en.md
+
+relations:
+  direction:
+    - mtf
+  tissue:
+    - tissue-skin

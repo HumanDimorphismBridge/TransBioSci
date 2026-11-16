@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Muscle: spindle-shaped belly with fascicles and tendons -->
+  <g transform="rotate(-20 60 60)">
+    <path class="fig-soft" d="M22 60C36 34 84 34 98 60C84 86 36 86 22 60Z"/>
+    <path d="M32 60C46 48 74 48 88 60M32 60C46 72 74 72 88 60M30 60H90"/>
+    <path d="M8 60H22M98 60H112"/>
+  </g>
+</svg>

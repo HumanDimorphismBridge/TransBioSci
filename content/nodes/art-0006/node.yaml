@@ -1,0 +1,16 @@
+id: art-0006
+
+projections:
+  zh-CN:
+    title: 占位文章：性腺分化
+    body: ./zh-CN.md
+  en:
+    title: "Placeholder article: Gonadal differentiation"
+    body: ./en.md
+
+relations:
+  direction:
+    - ntf
+    - ntm
+  tissue:
+    - tissue-gonads

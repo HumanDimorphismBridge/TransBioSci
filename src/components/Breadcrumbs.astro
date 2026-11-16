@@ -1,0 +1,38 @@
+---
+import { t } from '../i18n/ui';
+import type { Lang } from '../i18n/config';
+
+export interface Crumb {
+  label: string;
+  /** Ancestors with a page are links; the last item is the current page. */
+  href?: string;
+}
+
+interface Props {
+  lang: Lang;
+  items: Crumb[];
+}
+
+const { lang, items } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label={t(lang).breadcrumbLabel}>
+  <ol>
+    {
+      items.map((item, index) => {
+        const last = index === items.length - 1;
+        return (
+          <li>
+            {last ? (
+              <span aria-current="page">{item.label}</span>
+            ) : item.href ? (
+              <a href={item.href}>{item.label}</a>
+            ) : (
+              <span>{item.label}</span>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>

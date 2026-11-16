@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Gonads: two abstract marks in the pelvic region -->
+  <circle cx="60" cy="18" r="10"/><path d="M55 29V33Q46 34 42 38L34 68Q34 72 38 71L44 46L45 72L46 108Q46 111 50 111H54Q57 111 57 108L58 80Q60 75 62 80L63 108Q63 111 66 111H70Q74 111 74 108L75 72L76 46L82 71Q86 72 86 68L78 38Q74 34 65 33V29"/>
+  <circle class="fig-dir" cx="51" cy="68" r="5.5"/><circle class="fig-dir" cx="69" cy="68" r="5.5"/>
+</svg>

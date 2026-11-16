@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import LangSwitch from '../../../../components/LangSwitch.astro';
+import DirectionSelect from '../../../../components/DirectionSelect.astro';
+import Card from '../../../../components/Card.astro';
+import { LOCALE_OF, type Direction, type Lang } from '../../../../i18n/config';
+import { t } from '../../../../i18n/ui';
+import { loadContent } from '../../../../lib/content';
+import { routes } from '../../../../lib/routes';
+import { langDirPaths, mapDirections, mapLangs } from '../../../../lib/paths';
+
+export const getStaticPaths = langDirPaths;
+
+const { lang, dir } = Astro.params as { lang: Lang; dir: Direction };
+const s = t(lang);
+const { tissues } = await loadContent();
+const alternates = mapLangs((l) => routes.tissueGrid(l, dir));
+---
+
+<BaseLayout
+  lang={lang}
+  title={s.dimorphismTitle}
+  header={{ start: { kind: 'back', href: routes.home(lang), label: s.backHome }, title: s.dimorphismTitle }}
+  breadcrumbs={[{ label: s.home, href: routes.home(lang) }, { label: s.dimorphismTitle }]}
+  alternates={alternates}
+  kb="dimorphism"
+  direction={dir}
+>
+  <Fragment slot="controls">
+    <DirectionSelect lang={lang} current={dir} hrefs={mapDirections((d) => routes.tissueGrid(lang, d))} />
+    <LangSwitch lang={lang} hrefs={alternates} />
+  </Fragment>
+
+  <h1 class="page-heading">{s.tissuesHeading}</h1>
+  <ul class="tissue-grid">
+    {
+      tissues.map((tissue) => (
+        <li>
+          <Card
+            lang={lang}
+            href={routes.tissue(lang, dir, tissue.id)}
+            title={tissue.names[LOCALE_OF[lang]]}
+            figure={tissue.figure}
+            size="compact"
+          />
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

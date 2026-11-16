@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Blood vessels: branching tube (outer wall + lumen) -->
+  <g stroke-width="13"><path d="M20 102C38 84 50 72 60 58M60 58C66 46 78 34 98 26M60 58C74 60 88 66 102 80M79 36L82 16"/></g>
+  <g class="fig-lumen" stroke-width="7"><path d="M20 102C38 84 50 72 60 58M60 58C66 46 78 34 98 26M60 58C74 60 88 66 102 80M79 36L82 16"/></g>
+</svg>

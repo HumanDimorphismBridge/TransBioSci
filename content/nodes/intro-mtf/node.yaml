@@ -1,0 +1,14 @@
+id: intro-mtf
+
+projections:
+  zh-CN:
+    title: MtF 方向简介（占位）
+    body: ./zh-CN.md
+  en:
+    title: "MtF Introduction (placeholder)"
+    body: ./en.md
+
+relations:
+  direction:
+    - mtf
+  tissue: []

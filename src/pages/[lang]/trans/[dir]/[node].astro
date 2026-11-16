@@ -1,0 +1,19 @@
+---
+import TransPage from '../../../../components/TransPage.astro';
+import { DIRECTIONS, LANGS, type Direction, type Lang } from '../../../../i18n/config';
+import { appliesTo, loadContent } from '../../../../lib/content';
+
+export async function getStaticPaths() {
+  const content = await loadContent();
+  // One page per article and applicable direction, in each language.
+  return [...content.articleIds].flatMap((node) =>
+    DIRECTIONS.filter((dir) => appliesTo(content.nodes.get(node)!, dir)).flatMap((dir) =>
+      LANGS.map((lang) => ({ params: { lang, dir, node } })),
+    ),
+  );
+}
+
+const { lang, dir, node } = Astro.params as { lang: Lang; dir: Direction; node: string };
+---
+
+<TransPage lang={lang} dir={dir} nodeId={node} />

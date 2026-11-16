@@ -1,0 +1,21 @@
+---
+import Figure from './Figure.astro';
+import type { Lang } from '../i18n/config';
+
+interface Props {
+  lang: Lang;
+  href: string;
+  title: string;
+  description?: string;
+  figure: string;
+  size?: 'large' | 'compact';
+}
+
+const { lang, href, title, description, figure, size = 'large' } = Astro.props;
+---
+
+<a class:list={['card', `card-${size}`]} href={href}>
+  <Figure name={figure} lang={lang} />
+  <span class="card-title">{title}</span>
+  {description && <span class="card-desc">{description}</span>}
+</a>

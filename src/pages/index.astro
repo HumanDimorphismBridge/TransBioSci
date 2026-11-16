@@ -1,0 +1,13 @@
+---
+import RedirectPage from '../layouts/RedirectPage.astro';
+import { DEFAULT_LANG, LANGS, LANG_LABEL, STORAGE_KEYS } from '../i18n/config';
+import { routes } from '../lib/routes';
+---
+
+<RedirectPage
+  lang={DEFAULT_LANG}
+  title="TransBioSci"
+  storageKey={STORAGE_KEYS.lang}
+  targets={LANGS.map((l) => ({ value: l, label: LANG_LABEL[l], href: routes.home(l) }))}
+  defaultValue={DEFAULT_LANG}
+/>

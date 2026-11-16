@@ -1,0 +1,14 @@
+id: intro-ftm
+
+projections:
+  zh-CN:
+    title: FtM 方向简介（占位）
+    body: ./zh-CN.md
+  en:
+    title: "FtM Introduction (placeholder)"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+  tissue: []

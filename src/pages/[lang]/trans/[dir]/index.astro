@@ -1,0 +1,11 @@
+---
+import TransPage from '../../../../components/TransPage.astro';
+import type { Direction, Lang } from '../../../../i18n/config';
+import { langDirPaths } from '../../../../lib/paths';
+
+export const getStaticPaths = langDirPaths;
+
+const { lang, dir } = Astro.params as { lang: Lang; dir: Direction };
+---
+
+<TransPage lang={lang} dir={dir} />

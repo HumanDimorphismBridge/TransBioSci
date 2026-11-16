@@ -1,0 +1,15 @@
+id: art-0001
+
+projections:
+  zh-CN:
+    title: 占位文章：外部结构
+    body: ./zh-CN.md
+  en:
+    title: "Placeholder article: External structures"
+    body: ./en.md
+
+relations:
+  direction:
+    - ftm
+  tissue:
+    - tissue-external-genitalia

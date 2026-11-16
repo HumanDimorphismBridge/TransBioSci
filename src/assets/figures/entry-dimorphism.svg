@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Human dimorphism knowledge base: tissue cells -->
+  <path class="fig-soft" d="M44 30L58 38V54L44 62L30 54V38Z"/>
+  <path class="fig-soft" d="M76 30L90 38V54L76 62L62 54V38Z"/>
+  <path class="fig-soft" d="M60 58L74 66V82L60 90L46 82V66Z"/>
+  <circle class="fig-ink" cx="44" cy="46" r="4"/><circle class="fig-ink" cx="76" cy="46" r="4"/>
+  <circle cx="60" cy="74" r="5" class="fig-accent"/>
+</svg>
